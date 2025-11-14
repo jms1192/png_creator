@@ -1,5 +1,3 @@
-this unified Pine poster function.
-
 # 🟢 Pine Poster Renderer  
 Unified function for generating Pine-branded PNG charts (Bar, Pie, Dual Over-Time)
 
@@ -25,21 +23,22 @@ All posters are composited onto a Pine template PNG (default: `182.png`).
 
 Ensure the following files exist in your project:
 
-
-
 group_png_creator.py
 pie_png_creator.py
 metrics_over_time_png_creator.py
 pine_poster.py
 182.png # Poster layout background
 
+go
+Copy code
 
 Install required Python dependencies:
 
 ```bash
 pip install pillow matplotlib numpy
-
 🧠 render_pine_poster Function Overview
+python
+Copy code
 def render_pine_poster(
     poster_type,
     title,
@@ -73,10 +72,8 @@ def render_pine_poster(
     highlight_regions=None,
     highlight_points=None,
 )
-
 📝 Chart Types
 1. Bar Charts
-
 poster_type="bar"
 or: "horizontal_bar", "vertical_bar"
 
@@ -84,13 +81,17 @@ Required
 Argument	Type	Description
 labels	list[str]	Bar labels (must match values length)
 values	`list[int	float]`
+
 Optional
 Argument	Type	Description
 orientation	"horizontal" or "vertical"	Direction of bar layout
 value_axis_label	str	Label for numeric axis
 label_images	list[str|None]	Per-bar avatar/image
 colors_hex	list[str]	One hex color per bar
+
 Example
+python
+Copy code
 render_pine_poster(
     poster_type="bar",
     title="Top Wallets by PnL",
@@ -102,20 +103,22 @@ render_pine_poster(
     value_axis_label="PnL (USD)",
     colors_hex=["#1C5C3D", "#D97706", "#2563EB"],
 )
-
 2. Pie Charts
-
 poster_type="pie"
 
 Required
 Argument	Type	Description
 labels	list[str]	Pie slice labels
 values	`list[int	float]`
+
 Optional
 Argument	Type	Description
 center_image	str	Path/URL for center logo
 colors_hex	list[str]	One color per slice
+
 Example
+python
+Copy code
 render_pine_poster(
     poster_type="pie",
     title="DEX Volume Share",
@@ -125,9 +128,7 @@ render_pine_poster(
     values=[45, 25, 15, 10, 5],
     colors_hex=["#1C5C3D", "#D97706", "#2563EB", "#6B7280", "#10B981"],
 )
-
 3. Dual / Over-Time Charts
-
 poster_type="dual"
 or: "time_series", "overtime", "over_time"
 
@@ -135,6 +136,7 @@ Required
 Argument	Type	Description
 x_values	list[str/date]	X-axis (time or categories)
 y_series	dict[str, list]	Left-axis series data
+
 Optional Left-Axis Settings
 Argument	Type	Description
 ylabel_left	str	Left-axis label
@@ -142,6 +144,7 @@ left_series_type	"line", "bar", "area"	Chart style
 colors_hex	list[str]	One color per left series
 log_left	bool	Log scale
 include_zero_left	bool	Force zero into Y-range
+
 Optional Right-Axis Settings
 Argument	Type	Description
 right_series	list	Second axis series
@@ -150,11 +153,15 @@ right_color_hex	str	Hex color
 ylabel_right	str	Right axis label
 log_right	bool	Log scale
 include_zero_right	bool	Include zero in range
+
 Highlighting
 Argument	Type	Description
 highlight_regions	list[dict]	Shaded time windows
 highlight_points	list[dict]	Annotated points
+
 Example
+python
+Copy code
 render_pine_poster(
     poster_type="dual",
     title="eUSD Supply vs ENA Price",
@@ -172,9 +179,7 @@ render_pine_poster(
     include_zero_left=False,
     include_zero_right=False,
 )
-
 🎨 Colors
-
 Bar/Pie:
 colors_hex=["#HEX", "#HEX", ...] must match the number of bars or slices.
 
@@ -185,7 +190,6 @@ Left axis → colors_hex
 Right axis → right_color_hex
 
 📁 Output
-
 If out_path is not provided:
 
 Bar → pine_overlay_bar.png
@@ -197,7 +201,6 @@ Dual → pine_overlay_output_dual.png
 All charts are saved in PNG format.
 
 ⚠️ Error Handling
-
 The function raises errors for:
 
 Invalid poster_type
@@ -213,6 +216,8 @@ Series length != len(x_values)
 Incorrect color list lengths
 
 🧩 Recommended Folder Structure
+bash
+Copy code
 /your-project
   ├── pine_poster.py
   ├── group_png_creator.py
@@ -220,9 +225,7 @@ Incorrect color list lengths
   ├── metrics_over_time_png_creator.py
   ├── 182.png                      # template background
   ├── README.md
-
 🤝 Contributing
-
 Pull requests welcome — especially for:
 
 Additional chart types
