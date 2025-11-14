@@ -48,3 +48,27 @@ render_pine_poster(
     highlight_points=None,
 )
 
+```
+
+2. Pie Chart (poster_type="pie")
+
+Required
+
+labels
+
+values
+
+Optional
+
+colors_hex
+
+center_image (logo in center)
+
+Example
+
+render_pine_poster(
+    poster_type="pie",
+    title="DEX Volume Share",
+    labels=["Jupiter", "Raydium", "Orca", "Meteora", "Other"],
+    values=[45, 25, 15, 10, 5],
+)
